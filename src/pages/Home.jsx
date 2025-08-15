@@ -911,7 +911,7 @@ const Home = () => (
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div className="flex flex-wrap justify-between items-center">
       <nav className="flex flex-wrap gap-6">
-        <a href="/" className="text-gray-600 hover:text-purple-600 transition duration-300">Home</a>
+        <a href="/" className="text-gray-600 hover:text-purple-800 transition duration-300">Home</a>
         <a href="/about" className="text-gray-600 hover:text-purple-600 transition duration-300">About</a>
         <a href="/gallery" className="text-gray-600 hover:text-purple-600 transition duration-300">Gallery</a>
         <a href="/contact" className="text-gray-600 hover:text-purple-600 transition duration-300">Contact</a>
