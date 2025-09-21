@@ -1,6 +1,3 @@
-# Water_Sports
-An application for booking the water spoarts activity
-
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

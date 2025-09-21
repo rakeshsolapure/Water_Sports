@@ -3,6 +3,7 @@ import { Suspense, lazy } from 'react';
 import Navbar from './components/common/Navbar';
 
 const Home = lazy(() => import('./pages/Home'));
+const HomeTest = lazy(() => import('./pages/HomeTest'));
 const About = lazy(() => import('./pages/About'));
 const Gallery = lazy(() => import('./pages/Gallery'));
 const Contact = lazy(() => import('./pages/Contact'));
@@ -29,6 +30,7 @@ function App() {
           <Route path="/about" element={<Layout><About /></Layout>} />
           <Route path="/gallery" element={<Layout><Gallery /></Layout>} />
           <Route path="/contact" element={<Layout><Contact /></Layout>} />
+          <Route path="/test" element={<Layout><HomeTest /></Layout>} />
           {/* 404 Page */}
           <Route
             path="*"
