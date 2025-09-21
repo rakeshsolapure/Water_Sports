@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import './Contact.css';
+import './Css/Contact.css';
 
 const motionCommon = {
   initial: { opacity: 0, y: 20 },
