@@ -1,0 +1,534 @@
+/* About Page Styles */
+.about-container {
+  padding-top: 4rem;
+}
+
+.about-content {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.about-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #4C1D95;
+  margin-bottom: 2rem;
+}
+
+.about-text {
+  color: #374151;
+  font-size: 1.125rem;
+  line-height: 1.7;
+}
+
+.about-subtitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #4C1D95;
+  margin-bottom: 1rem;
+  padding-top: 1.5rem;
+}
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.feature-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #3B82F6;
+  flex-shrink: 0;
+}
+
+.video-container {
+  position: relative;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+}
+
+.video-element {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.play-button {
+  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(4px);
+  padding: 1rem;
+  border-radius: 9999px;
+  transition: background-color 0.3s;
+}
+
+.play-button:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.play-icon {
+  width: 3rem;
+  height: 3rem;
+  color: white;
+}
+
+/* Activities Section */
+.activities-section {
+  padding: 5rem 0;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #4C1D95;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
+  font-size: 1.25rem;
+  color: #4B5563;
+}
+
+.activities-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.activity-card {
+  background-color: white;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.card-image-container {
+  position: relative;
+}
+
+.sale-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background-color: #3B82F6;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.card-image {
+  width: 100%;
+  height: 16rem;
+  object-fit: cover;
+}
+
+.thumbnails-container {
+  display: flex;
+  gap: 0.5rem;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+}
+
+.thumbnail {
+  width: 4rem;
+  height: 3rem;
+  object-fit: cover;
+  border-radius: 0.25rem;
+}
+
+.card-content {
+  padding: 1.5rem;
+}
+
+.activity-type {
+  font-size: 0.875rem;
+  color: #4C1D95;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.activity-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #4C1D95;
+  margin-bottom: 0.75rem;
+}
+
+.activity-description {
+  color: #4B5563;
+  margin-bottom: 1rem;
+}
+
+.price-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.current-price {
+  color: #4C1D95;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.original-price {
+  color: #6B7280;
+  text-decoration: line-through;
+}
+
+.details-button {
+  width: 100%;
+  background-color: #4C1D95;
+  color: white;
+  font-weight: 700;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.details-button:hover {
+  background-color: #5B21B6;
+}
+
+/* Book With Us Section */
+.book-section {
+  position: relative;
+  padding: 5rem 0;
+}
+
+.book-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.book-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.book-content {
+  position: relative;
+  z-index: 10;
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.book-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.book-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.book-card {
+  text-align: center;
+}
+
+.card-icon {
+  width: 6rem;
+  height: 6rem;
+  margin: 0 auto 1.5rem;
+  border-radius: 9999px;
+  border: 2px solid #8B5CF6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-icon svg {
+  width: 3rem;
+  height: 3rem;
+  color: #8B5CF6;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #8B5CF6;
+  margin-bottom: 1rem;
+}
+
+.card-description {
+  color: white;
+  text-align: center;
+}
+
+.book-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 2rem;
+  border: 2px solid #8B5CF6;
+  color: #8B5CF6;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+  margin-top: 3rem;
+}
+
+.book-button:hover {
+  background-color: #8B5CF6;
+  color: white;
+}
+
+.whatsapp-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-left: 0.5rem;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 5rem 0;
+  background-color: white;
+}
+
+.contact-content {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.contact-icon {
+  width: 6rem;
+  height: 6rem;
+  background-color: #7C3AED;
+  border-radius: 9999px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-icon svg {
+  width: 3rem;
+  height: 3rem;
+  color: white;
+}
+
+.contact-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #4C1D95;
+  margin-bottom: 1rem;
+}
+
+.contact-subtitle {
+  color: #4B5563;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+.contact-card {
+  text-align: center;
+}
+
+.contact-card-icon {
+  width: 5rem;
+  height: 5rem;
+  background-color: #7C3AED;
+  border-radius: 9999px;
+  margin: 0 auto 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-card-icon svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: white;
+}
+
+.contact-card-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #4C1D95;
+  margin-bottom: 0.5rem;
+}
+
+.contact-link {
+  color: #7C3AED;
+  transition: color 0.3s;
+}
+
+.contact-link:hover {
+  color: #5B21B6;
+}
+
+/* Footer */
+.footer {
+  background-color: #F3F4F6;
+  padding: 2rem 0;
+}
+
+.footer-content {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-link {
+  color: #4B5563;
+  transition: color 0.3s;
+}
+
+.footer-link:hover {
+  color: #7C3AED;
+}
+
+.footer-text {
+  color: #4B5563;
+}
+
+/* WhatsApp Float Button */
+.whatsapp-float {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 50;
+  background-color: #22C55E;
+  color: white;
+  padding: 1rem;
+  border-radius: 9999px;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s;
+}
+
+.whatsapp-float:hover {
+  background-color: #16A34A;
+}
+
+.whatsapp-float svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .activities-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .book-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .contact-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-content,
+  .book-content,
+  .contact-content,
+  .footer-content {
+    padding: 0 2rem;
+  }
+  
+  .activities-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .about-title {
+    font-size: 3rem;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+  }
+  
+  .book-title {
+    font-size: 2.5rem;
+  }
+  
+  .contact-title {
+    font-size: 2.25rem;
+  }
+}
