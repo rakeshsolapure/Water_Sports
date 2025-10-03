@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import './About.css';
+import './Css/About.css';
 
 const motionCommon = {
   initial: { opacity: 0, y: 20 },
