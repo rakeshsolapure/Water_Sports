@@ -1,0 +1,4 @@
+- [ ] Replace img for Best Experience with star SVG
+- [ ] Replace img for Safety First with shield SVG
+- [ ] Replace img for Expert Crew with users SVG
+- [ ] Replace img for Modern Fleet with boat SVG

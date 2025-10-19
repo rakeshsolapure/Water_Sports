@@ -1,0 +1,123 @@
+.navbar {
+  background-color: #ffffffcc;
+  backdrop-filter: saturate(150%) blur(6px);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 50;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-container {
+  max-width: 90rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo-title{
+          height: '48px';
+          width: '48px';
+          border-radius: '50%';
+          box-shadow: '0 2px 8px rgba(0,0,0,0.10)';
+          background: '#f3f3f3';
+          object-fit: 'cover';
+            display: 'flex';
+            align-items: 'center';
+            justify-content: 'center';
+        }
+
+.navbar-logo {
+  height: 3rem;
+  width: 3rem;
+  object-fit: contain;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+
+.navbar-logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar-title {
+  font-size: 1.875rem;
+  font-weight: 800;
+  color: #111827;
+  font-family: 'Inter', 'Poppins', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+
+.navbar-menu-desktop {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+}
+
+@media (min-width: 768px) {
+  .navbar-menu-desktop {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+}
+
+.navbar-link {
+  color: #334155;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  position: relative;
+  transition: color 150ms ease, background-color 150ms ease;
+}
+
+.navbar-link:hover {
+  color: #0ea5e9;
+  background-color: rgba(14, 165, 233, 0.08);
+}
+
+.navbar-link-active {
+  color: #0ea5e9;
+}
+
+.navbar-menu-mobile-btn {
+  display: flex;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .navbar-menu-mobile-btn {
+    display: none;      
+  }
+}
+
+.navbar-menu-mobile {
+  display: none;
+}
+
+.navbar-menu-mobile.open {
+  display: block;
+}
+
+.navbar-menu-mobile-link {
+  display: block;
+  padding: 0.75rem 1rem;
+  color: #334155;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.navbar-menu-mobile-link:hover {
+  color: #0ea5e9;
+}

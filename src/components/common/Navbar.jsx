@@ -1,24 +1,44 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
+import { FaHome, FaInfoCircle, FaImages, FaEnvelope } from 'react-icons/fa';
+import ScrollToTop from './scroolToTop';
+import logo from '../../assets/Vibrant Travel Logo with Tropical Icons.png';
+import './Navbar.css';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="bg-white shadow-md fixed w-full z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex-shrink-0 flex items-center">
-            <Link to="/" className="text-2xl font-bold text-primary">
-            WaveRiders Goa
-            </Link>
+    <>
+      <ScrollToTop />
+      <nav className="navbar" role="navigation" aria-label="Primary">
+        <div className="navbar-container">
+          {/* Left-aligned logo and title */}
+          <div className="navbar-logo-container">
+            <img
+              src={logo}
+              alt="Goa Travel Mart Logo"
+              className="h-12 w-12 object-contain rounded-full shadow-md"
+            />
+            <span style={{
+              fontFamily: 'Brush Script MT, cursive',
+              fontWeight: 700,
+              fontSize: '2.4rem',
+              color: '#d686fdff',
+              letterSpacing: '0.04em'
+            }}>
+              Goa Travel Mart
+            </span>
+            {/* Goa Travel Mart */}
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          <div className="navbar-menu-mobile-btn">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary"
+              aria-label="Toggle navigation menu"
+              aria-expanded={isOpen}
             >
               <svg
                 className="h-6 w-6"
@@ -36,49 +56,83 @@ const Navbar = () => {
           </div>
 
           {/* Desktop menu */}
-          <div className="hidden md:flex md:items-center md:space-x-8">
-            <Link to="/" className="text-gray-700 hover:text-primary">Home</Link>
-            <Link to="/about" className="text-gray-700 hover:text-primary">About</Link>
-            <Link to="/gallery" className="text-gray-700 hover:text-primary">Gallery</Link>
-            <Link to="/contact" className="text-gray-700 hover:text-primary">Contact</Link>
+          <div className="navbar-menu-desktop">
+            <NavLink
+              to="/"
+              className={({ isActive }) => `navbar-link${isActive ? ' navbar-link-active' : ''}`}
+            >
+              <FaHome className="mr-2" />Home
+            </NavLink>
+            <NavLink
+              to="/about"
+              className={({ isActive }) => `navbar-link${isActive ? ' navbar-link-active' : ''}`}
+              onClick={(e) => {
+                // force a full page reload/navigation to /about
+                e.preventDefault();
+                if (window.location.pathname === '/about') {
+                  window.location.reload();
+                } else {
+                  window.location.href = '/about';
+                }
+              }}
+            >
+              <FaInfoCircle className="mr-2" />About
+            </NavLink>
+            <NavLink
+              to="/gallery"
+              className={({ isActive }) => `navbar-link${isActive ? ' navbar-link-active' : ''}`}
+            >
+              <FaImages className="mr-2" />Gallery
+            </NavLink>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) => `navbar-link${isActive ? ' navbar-link-active' : ''}`}
+            >
+              <FaEnvelope className="mr-2" />Contact
+            </NavLink>
           </div>
         </div>
-      </div>
 
-      {/* Mobile menu */}
-      <div className={`${isOpen ? 'block' : 'hidden'} md:hidden`}>
-        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        {/* Mobile menu */}
+        <div className={`navbar-menu-mobile${isOpen ? ' open' : ''}`}>
           <Link 
             to="/" 
-            className="block px-3 py-2 text-gray-700 hover:text-primary"
+            className="navbar-menu-mobile-link"
             onClick={() => setIsOpen(false)}
           >
             Home
           </Link>
           <Link 
             to="/about" 
-            className="block px-3 py-2 text-gray-700 hover:text-primary"
-            onClick={() => setIsOpen(false)}
+            className="navbar-menu-mobile-link"
+            onClick={() => {
+              setIsOpen(false);
+              if (window.location.pathname === '/about') {
+                window.location.reload();
+              } else {
+                window.location.href = '/about';
+              }
+            }}
           >
             About
           </Link>
           <Link 
             to="/gallery" 
-            className="block px-3 py-2 text-gray-700 hover:text-primary"
+            className="navbar-menu-mobile-link"
             onClick={() => setIsOpen(false)}
           >
             Gallery
           </Link>
           <Link 
             to="/contact" 
-            className="block px-3 py-2 text-gray-700 hover:text-primary"
+            className="navbar-menu-mobile-link"
             onClick={() => setIsOpen(false)}
           >
             Contact
           </Link>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </>
   );
 };
 

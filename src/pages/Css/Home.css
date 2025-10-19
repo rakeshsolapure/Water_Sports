@@ -497,10 +497,10 @@
   margin-bottom: 4rem;
 }
 
-.contact-icon-container {
+.contact-icon {
   width: 6rem;
   height: 6rem;
-  background-color: #8b5cf6;
+  background-color: #7C3AED;
   border-radius: 9999px;
   margin: 0 auto 1.5rem;
   display: flex;
@@ -508,7 +508,7 @@
   justify-content: center;
 }
 
-.contact-icon {
+.contact-icon svg {
   width: 3rem;
   height: 3rem;
   color: white;

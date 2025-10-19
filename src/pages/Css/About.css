@@ -1,12 +1,18 @@
+/* Apply box-sizing to avoid layout issues */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
 /* About Page Styles */
 .about-container {
-  padding-top: 4rem;
+  min-height: 100vh;
+  position: relative;
 }
 
 .about-content {
   max-width: 80rem;
   margin: 0 auto;
-  padding: 0 1rem;
+  padding: 2rem 1rem;
 }
 
 .about-grid {
@@ -27,6 +33,7 @@
   color: #374151;
   font-size: 1.125rem;
   line-height: 1.7;
+  margin-bottom: 1rem; /* Added spacing between paragraphs */
 }
 
 .about-subtitle {
@@ -57,35 +64,43 @@
 }
 
 .video-container {
-  position: relative;
+  width: 100%;
+  height: 73%;
+  max-width: 500px;
+  margin: 0 auto;
   border-radius: 0.75rem;
   overflow: hidden;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
 }
 
 .video-wrapper {
-  position: relative;
   width: 100%;
-  height: 0;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 100%; /* fill the video-container's height (video-container height unchanged) */
+  background: #f3f3f3;
+  position: relative;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  display: block;
 }
 
 .video-element {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;                /* fill the wrapper exactly */
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover;       /* ensure the image covers the area, cropping as needed */
+  display: block;
+  border-radius: 0.75rem;
 }
 
 .video-overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.3); /* Slightly darker for better button contrast */
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer; /* Indicate clickability */
 }
 
 .play-button {
@@ -94,10 +109,14 @@
   padding: 1rem;
   border-radius: 9999px;
   transition: background-color 0.3s;
+  cursor: pointer; /* Added for better UX */
+  border: none; /* Remove default button border */
 }
 
-.play-button:hover {
+.play-button:hover,
+.play-button:focus {
   background-color: rgba(255, 255, 255, 0.4);
+  outline: none; /* Custom focus styles can be added if needed */
 }
 
 .play-icon {
@@ -155,6 +174,7 @@
   border-radius: 9999px;
   font-size: 0.875rem;
   font-weight: 600;
+  z-index: 10;
 }
 
 .card-image {
@@ -169,6 +189,9 @@
   position: absolute;
   bottom: 1rem;
   left: 1rem;
+  background: rgba(0, 0, 0, 0.35); /* Background added for visibility */
+  padding: 0.25rem;
+  border-radius: 0.25rem;
 }
 
 .thumbnail {
@@ -176,6 +199,14 @@
   height: 3rem;
   object-fit: cover;
   border-radius: 0.25rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.thumbnail:hover,
+.thumbnail:focus {
+  transform: scale(1.05);
+  outline: none;
 }
 
 .card-content {
@@ -231,8 +262,10 @@
   transition: background-color 0.3s;
 }
 
-.details-button:hover {
+.details-button:hover,
+.details-button:focus {
   background-color: #5B21B6;
+  outline: none;
 }
 
 /* Book With Us Section */
@@ -322,11 +355,14 @@
   border-radius: 0.5rem;
   transition: all 0.3s;
   margin-top: 3rem;
+  cursor: pointer;
 }
 
-.book-button:hover {
+.book-button:hover,
+.book-button:focus {
   background-color: #8B5CF6;
   color: white;
+  outline: none;
 }
 
 .whatsapp-icon {
@@ -417,10 +453,14 @@
 .contact-link {
   color: #7C3AED;
   transition: color 0.3s;
+  cursor: pointer;
+  text-decoration: none;
 }
 
-.contact-link:hover {
+.contact-link:hover,
+.contact-link:focus {
   color: #5B21B6;
+  outline: none;
 }
 
 /* Footer */
@@ -452,10 +492,14 @@
 .footer-link {
   color: #4B5563;
   transition: color 0.3s;
+  text-decoration: none;
+  cursor: pointer;
 }
 
-.footer-link:hover {
+.footer-link:hover,
+.footer-link:focus {
   color: #7C3AED;
+  outline: none;
 }
 
 .footer-text {
@@ -474,10 +518,13 @@
   border-radius: 9999px;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   transition: background-color 0.3s;
+  cursor: pointer;
 }
 
-.whatsapp-float:hover {
+.whatsapp-float:hover,
+.whatsapp-float:focus {
   background-color: #16A34A;
+  outline: none;
 }
 
 .whatsapp-float svg {
@@ -486,19 +533,29 @@
 }
 
 /* Responsive Design */
+@media (min-width: 640px) {
+  /* Small update for better text and spacing */
+  .about-title {
+    font-size: 2.5rem;
+  }
+  .about-text {
+    font-size: 1.2rem;
+  }
+}
+
 @media (min-width: 768px) {
   .about-grid {
     grid-template-columns: 1fr 1fr;
   }
-  
+
   .activities-grid {
     grid-template-columns: 1fr 1fr;
   }
-  
+
   .book-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  
+
   .contact-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -511,23 +568,23 @@
   .footer-content {
     padding: 0 2rem;
   }
-  
+
   .activities-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-  
+
   .about-title {
     font-size: 3rem;
   }
-  
+
   .section-title {
     font-size: 2.5rem;
   }
-  
+
   .book-title {
     font-size: 2.5rem;
   }
-  
+
   .contact-title {
     font-size: 2.25rem;
   }

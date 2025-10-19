@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import Hero from '../components/home/Hero';
+import { getWhatsAppMessage, getQuickWhatsAppMessage } from '../utils/whatsappMessage';
 
 const activityCards = [
   {
@@ -114,7 +115,14 @@ const contactDetails = [
       </svg>
     ),
     title: 'Email',
-    content: <a href="mailto:watersports@gmail.com" className="text-purple-600 hover:text-purple-800 transition duration-300">watersports@gmail.com</a>,
+    content: <a
+        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('goatravelm@gmail.com')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="contact-link"
+      >
+        goatravelm@gmail.com
+      </a>,
   },
 ];
 
@@ -129,7 +137,7 @@ const covidGuidelines = [
 
 const featuresList = [
   { icon: "🏊‍♂️", text: "Real Scuba Experience" },
-  { icon: "🌊", text: "Fun rides in Watersports" },
+  { icon: "🌊", text: "Fun rides in GoaTravelMart" },
   { icon: "🎖️", text: "Professional & Expert Instructors" },
   { icon: "🛠️", text: "Quality & Best Equipment's" },
   { icon: "📱", text: "Instant Booking Confirmation on Phone" },
@@ -151,10 +159,17 @@ const motionCommon = {
   viewport: { once: true },
 };
 
-const HomeTest = () => (
-  <>
-  <div>
-    <Hero />
+const HomeTest = () => {
+  // Get WhatsApp messages for different contexts
+  const { whatsappUrl } = getWhatsAppMessage();
+  const jetskiWhatsapp = getQuickWhatsAppMessage('jetski').whatsappUrl;
+  const cruiseWhatsapp = getQuickWhatsAppMessage('cruise').whatsappUrl;
+  const scubaWhatsapp = getQuickWhatsAppMessage('scuba').whatsappUrl;
+
+  return (
+    <>
+    <div>
+      <Hero />
 
     {/* Activities Sections */}
     
@@ -224,12 +239,12 @@ const HomeTest = () => (
               </div>
             </div>
 
-            <button className="mt-8 bg-primary hover:bg-secondary text-white font-bold py-3 px-8 rounded-lg transition duration-300 flex items-center">
+            <a href={jetskiWhatsapp} target="_blank" rel="noopener noreferrer" className="mt-8 bg-primary hover:bg-secondary text-white font-bold py-3 px-8 rounded-lg transition duration-300 flex items-center">
               Book Now
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </button>
+            </a>
           </div>
           </motion.div>
         </div>
@@ -263,7 +278,7 @@ const HomeTest = () => (
 
           {/* Content */}
           <div className="w-full lg:w-1/2">
-            <h2 className="text-3xl font-bold mb-4">SWASTIK : Goa’s No 1 BIGGEST FAMILY CRUISE</h2>
+            <h2 className="text-3xl font-bold mb-4">SWASTIK : Goa's No 1 BIGGEST FAMILY CRUISE</h2>
             <p className="text-gray-600 mb-6">
             TRIPLE DECK WITH AC DISCOTHEQUE AND OPEN SKIES, DINE WITH THE WAVES
             </p>
@@ -303,12 +318,12 @@ const HomeTest = () => (
             </div>
 
             
-            <button className="mt-8 bg-primary hover:bg-secondary text-white font-bold py-3 px-8 rounded-lg transition duration-300 flex items-center">
+            <a href={cruiseWhatsapp} target="_blank" rel="noopener noreferrer" className="mt-8 bg-primary hover:bg-secondary text-white font-bold py-3 px-8 rounded-lg transition duration-300 flex items-center">
               Book Now
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </button>
+            </a>
           </div>
         </motion.div>
       </div>
@@ -377,12 +392,12 @@ const HomeTest = () => (
               </div>
             </div>
 
-            <button className="mt-8 bg-primary hover:bg-secondary text-white font-bold py-3 px-8 rounded-lg transition duration-300 flex items-center">
+            <a href={scubaWhatsapp} target="_blank" rel="noopener noreferrer" className="mt-8 bg-primary hover:bg-secondary text-white font-bold py-3 px-8 rounded-lg transition duration-300 flex items-center">
               Book Now
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </button>
+            </a>
           </div>
         </motion.div>
       </div>
@@ -417,7 +432,7 @@ const HomeTest = () => (
                   <h3 className="text-3xl font-bold text-white mb-3">{card.title}</h3>
                   <p className="text-white mb-4">{card.desc}</p>
                   <a
-                    href="https://wa.me/+918484810061"
+                    href={whatsappUrl}
                     className="inline-block w-fit px-6 py-2 border-2 border-white text-white hover:bg-white hover:text-gray-900 transition duration-300 rounded-lg"
                   >
                     Get Details
@@ -473,7 +488,7 @@ const HomeTest = () => (
           className="text-center mt-12"
         >
           <a
-            href="https://www.youtube.com/@divesport"
+            href="https://www.youtube.com/@GoaTravelMart"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition duration-300"
@@ -549,7 +564,7 @@ const HomeTest = () => (
       className="text-center mt-12"
     >
       <a
-        href="https://wa.me/+918484810061"
+        href={whatsappUrl}
         className="inline-flex items-center px-8 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-full transition duration-300"
       >
         Get Details & Discount Offers
@@ -575,12 +590,12 @@ const HomeTest = () => (
             <div className="space-y-6 text-gray-700">
               <p>
                 Scuba diving experience in Goa should be on everyone's list of must-to-do activities in Goa. 
-                Divesport is famous for providing a kind experience when it comes to water sports and scuba 
+                Goa Travel Mart is famous for providing a kind experience when it comes to water sports and scuba 
                 diving in Goa With a depth ranging from 10-15 meters.
               </p>
               
               <p>
-                At Divesport we strive to provide the best 1st scuba experience in Goa. we have been here 
+                At Goa Travel Mart we strive to provide the best 1st scuba experience in Goa. we have been here 
                 for 8+ years and serve thousands of travellers every season.
               </p>
               
@@ -604,7 +619,7 @@ const HomeTest = () => (
             className="bg-white rounded-xl p-8 shadow-lg"
           >
             <h3 className="text-2xl font-bold text-purple-900 mb-4">
-              Get the Best Experience in Scuba Diving & Watersports
+              Get the Best Experience in Scuba Diving & Water Sports
             </h3>
             <p className="text-purple-600 mb-8">
               Best Service, We Strive To Provide Our Customers.
@@ -613,7 +628,7 @@ const HomeTest = () => (
             <div className="space-y-4">
               {[
                 { icon: "🏊‍♂️", text: "Real Scuba Experience" },
-                { icon: "🌊", text: "Fun rides in Watersports" },
+                { icon: "🌊", text: "Fun rides in Water Sports" },
                 { icon: "🎖️", text: "Professional & Expert Instructors" },
                 { icon: "🛠️", text: "Quality & Best Equipment's" },
                 { icon: "📱", text: "Instant Booking Confirmation on Phone" },
@@ -718,9 +733,15 @@ const HomeTest = () => (
               </svg>
             </div>
             <h3 className="text-xl font-bold text-purple-900 mb-2">Live Chat</h3>
-            <button className="text-purple-600 hover:text-purple-800 transition duration-300">
-              Start Chat
-            </button>
+            <h3 className="contact-item-title">Live Chat</h3>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-link"
+              >
+                Start Chat
+              </a>
           </motion.div>
 
           {/* Email */}
@@ -741,12 +762,14 @@ const HomeTest = () => (
               </svg>
             </div>
             <h3 className="text-xl font-bold text-purple-900 mb-2">Email</h3>
-            <a 
-              href="mailto:watersports@gmail.com" 
-              className="text-purple-600 hover:text-purple-800 transition duration-300"
-            >
-              watersports@gmail.com
-            </a>
+            <a
+        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('goatravelm@gmail.com')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="contact-link"
+      >
+        goatravelm@gmail.com
+      </a>
           </motion.div>
         </div>
       </div>
@@ -833,14 +856,19 @@ const HomeTest = () => (
         viewport={{ once: true }}
       >
         <div className="mb-12">
-          <h2 className="text-2xl font-bold text-blue-600 mb-6">Divesport.in</h2>
+          <h2 className="text-2xl font-bold text-blue-600 mb-6">Goa Travel Mart</h2>
           
           <div className="space-y-6">
             <div>
               <h3 className="font-semibold text-gray-700">Email:</h3>
-              <a href="mailto:watersports@gmail.com" className="text-blue-600 hover:underline">
-                watersports@gmail.com
-              </a>
+              <a
+        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('goatravelm@gmail.com')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="contact-link"
+      >
+        goatravelm@gmail.com
+      </a>
             </div>
 
             <div>
@@ -917,7 +945,7 @@ const HomeTest = () => (
         <a href="/contact" className="text-gray-600 hover:text-purple-600 transition duration-300">Contact</a>
       </nav>
       <div className="text-gray-600">
-        Powered By Watersports...!
+        Powered By GoaTravelMart...!
       </div>
     </div>
   </div>
@@ -925,7 +953,7 @@ const HomeTest = () => (
 
 {/* WhatsApp Float Button */}
 <a 
-  href="https://wa.me/+918484810061" 
+  href={whatsappUrl} 
   target="_blank" 
   rel="noopener noreferrer"
   className="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition duration-300"
@@ -939,6 +967,7 @@ const HomeTest = () => (
   </svg>
 </a>
 </>
-);
+  );
+};
 
 export default HomeTest;
