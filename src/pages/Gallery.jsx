@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import './Css/Gallery.css';
+import { getWhatsAppMessage } from '../utils/whatsappMessage';
 
 const motionCommon = {
   initial: { opacity: 0, y: 20 },
@@ -65,6 +66,8 @@ const navLinks = [
 ];
 
 const Gallery = () => {
+  const { whatsappUrl } = getWhatsAppMessage();
+  
   return (
     <div className="gallery-container">
       {/* Hero Section */}
@@ -171,7 +174,7 @@ const Gallery = () => {
         </div>
       </section>
 
-      {/* Why Choose Divesport Section */}
+      {/* Why Choose Goa Travel Mart Section */}
       <section className="why-choose-section">
         <div className="container">
           <motion.h2
@@ -181,7 +184,7 @@ const Gallery = () => {
             viewport={{ once: true }}
             className="section-title-light"
           >
-            Why Choose Divesport for Scuba Diving in Goa?
+            Why Choose Goa Travel Mart for Scuba Diving in Goa?
           </motion.h2>
           <div className="why-choose-grid">
             {whyChoose.slice(0, 6).map((feature, index) => (
@@ -229,7 +232,9 @@ const Gallery = () => {
             className="cta-container"
           >
             <a
-              href="https://wa.me/your_number"
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="cta-button"
             >
               <svg className="whatsapp-icon" fill="currentColor" viewBox="0 0 24 24">
@@ -252,7 +257,7 @@ const Gallery = () => {
             className="reviews-header"
           >
             <h2 className="reviews-title">
-              Divesport Reviews
+              Goa Travel Mart Reviews
             </h2>
             <p className="reviews-subtitle">
               Creating extraordinary personalized experiences for our customers is our life's passion, 
@@ -351,7 +356,7 @@ const Gallery = () => {
             className="book-cta-container"
           >
             <a 
-              href="https://wa.me/your_number" 
+              href={whatsappUrl} 
               target="_blank" 
               rel="noopener noreferrer"
               className="book-cta-button"
@@ -444,13 +449,18 @@ const Gallery = () => {
               className="guidelines-container"
             >
               <div className="info-section">
-                <h2 className="info-title">Divesport.in</h2>
+                <h2 className="info-title">Goa Travel Mart</h2>
                 <div className="info-content">
                   <div className="info-item">
                     <h3 className="info-subtitle">Email:</h3>
-                    <a href="mailto:watersports@gmail.com" className="info-link">
-                      watersports@gmail.com
-                    </a>
+                    <a
+        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('goatravelm@gmail.com')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="contact-link"
+      >
+        goatravelm@gmail.com
+      </a>
                   </div>
                   <div className="info-item">
                     <h3 className="info-subtitle">Address:</h3>
@@ -521,7 +531,7 @@ const Gallery = () => {
               ))}
             </nav>
             <div className="footer-text">
-              Powered By Watersports...!
+              Powered By GoaTravelMart...!
             </div>
           </div>
         </div>

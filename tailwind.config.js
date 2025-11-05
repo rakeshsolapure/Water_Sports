@@ -12,6 +12,13 @@ export default {
       },
     },
   },
+  theme: {
+    extend: {
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+      },
+    },
+  },
   plugins: [],
   // aspectRatio: {
   //       'w-16': '16',

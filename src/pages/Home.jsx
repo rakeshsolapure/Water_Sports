@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import Hero from '../components/home/Hero';
 import './Css/Home.css';
+import { getWhatsAppMessage, getQuickWhatsAppMessage } from '../utils/whatsappMessage';
 
 // ... (all your arrays remain the same)
 
@@ -64,27 +65,53 @@ const activityCards = [
   },
 ];
 
+const starSvg = <img src="src/assets/best-customer-experience.png" alt="Best Experience" className="why-choose-svg" />;
+
+const shieldSvg = (<img src="src/assets/generated-image.png" alt="Safety First" className="why-choose-svg" />);
+
+// const shieldSvg = (
+//   <svg className="why-choose-svg" fill="currentColor" viewBox="0 0 24 24">
+//     <path d="M12 2l8 3v7c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l8-3z"/>
+//   </svg>
+// );
+
+const usersSvg = (<img src="src/assets/expert_crew.jpg" alt="Expert Crew" className="why-choose-svg" />);
+
+// const usersSvg = (
+//   <svg className="why-choose-svg" fill="currentColor" viewBox="0 0 24 24">
+//     <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+//   </svg>
+// );
+
+const boatSvg = (<img src="src/assets/modern_fleet.jpg" alt="Modern Fleet" className="why-choose-svg" />);
+
+// const boatSvg = (
+//   <svg className="why-choose-svg" fill="currentColor" viewBox="0 0 24 24">
+//     <path d="M20 21c-1.39 0-2.78-.47-4-1.32L12 21l-4-1.32C6.78 20.53 5.39 21 4 21H2v2h2c1.38 0 2.74-.35 4-.99L12 23l4-.99c1.26.64 2.62.99 4 .99h2v-2h-2zM3.95 19H4c1.6 0 3.02-.88 4-2.05L12 15l4 1.95c.98 1.17 2.4 2.05 4 2.05h.05l1.89-6.68c.08-.26.13-.53.13-.81 0-1.38-1.12-2.5-2.5-2.5H14V8c0-1.1-.9-2-2-2s-2 .9-2 2v1.01H4.5c-1.38 0-2.5 1.12-2.5 2.5 0 .28.05.55.13.81L3.95 19z"/>
+//   </svg>
+// );
+
 const whyChooseCards = [
   {
-    img: "src/assets/best-customer-experience.png",
+    svg: starSvg,
     alt: 'Best Experience',
     title: 'Best Experience',
     desc: 'Professional service with certified instructors and top-quality equipment.'
   },
   {
-    img: "src/assets/safety-first.jpg",
+    svg: shieldSvg,
     alt: 'Safety First',
     title: 'Safety First',
     desc: 'Comprehensive safety measures and experienced guides for your protection.'
   },
   {
-    img: "src/assets/expert-crew.jpg",
+    svg: usersSvg,
     alt: 'Expert Crew',
     title: 'Expert Crew',
     desc: 'Skilled and friendly team dedicated to making your adventure memorable.'
   },
   {
-    img: "src/assets/modern-fleet.jpg",
+    svg: boatSvg,
     alt: 'Modern Fleet',
     title: 'Modern Fleet',
     desc: 'Well-maintained equipment and boats for a comfortable adventure.'
@@ -117,7 +144,14 @@ const contactDetails = [
       </svg>
     ),
     title: 'Email',
-    content: <a href="mailto:watersports@gmail.com" className="text-purple-600 hover:text-purple-800 transition duration-300">watersports@gmail.com</a>,
+    content: <a
+        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('goatravelm@gmail.com')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="contact-link"
+      >
+        goatravelm@gmail.com
+      </a>,
   },
 ];
 
@@ -132,7 +166,7 @@ const covidGuidelines = [
 
 const featuresList = [
   { icon: "🏊‍♂️", text: "Real Scuba Experience" },
-  { icon: "🌊", text: "Fun rides in Watersports" },
+  { icon: "🌊", text: "Fun rides in GoaTravelMart" },
   { icon: "🎖️", text: "Professional & Expert Instructors" },
   { icon: "🛠️", text: "Quality & Best Equipment's" },
   { icon: "📱", text: "Instant Booking Confirmation on Phone" },
@@ -141,12 +175,12 @@ const featuresList = [
   { icon: "👀", text: "Enjoy Best Day in Goa." }
 ];
 
-const videoList = [
-  { src: "https://www.youtube.com/embed/abc123xyz", title: "Scuba diving in goa |water-sports-and-tours" },
-  { src: "https://www.youtube.com/embed/YOUR_VIDEO_ID_2", title: "Dive into the Depths with Divesport" },
-  { src: "https://www.youtube.com/embed/YOUR_VIDEO_ID_3", title: "Scuba diving in goa" },
-  { src: "https://www.youtube.com/embed/YOUR_VIDEO_ID_4", title: "Couple Scuba diving in Goa" },
-];
+// const videoList = [
+//   { src: "https://www.youtube.com/embed/abc123xyz", title: "Scuba diving in goa |water-sports-and-tours" },
+//   { src: "https://www.youtube.com/embed/YOUR_VIDEO_ID_2", title: "Dive into the Depths with Divesport" },
+//   { src: "https://www.youtube.com/embed/YOUR_VIDEO_ID_3", title: "Scuba diving in goa" },
+//   { src: "https://www.youtube.com/embed/YOUR_VIDEO_ID_4", title: "Couple Scuba diving in Goa" },
+// ];
 
 const motionCommon = {
   initial: { opacity: 0, y: 20 },
@@ -154,10 +188,17 @@ const motionCommon = {
   viewport: { once: true },
 };
 
-const Home = () => (
-  <>
-    <div className="home-container">
-      <Hero />
+const Home = () => {
+  // Get WhatsApp messages for different contexts
+  const { whatsappUrl } = getWhatsAppMessage();
+  const jetskiWhatsapp = getQuickWhatsAppMessage('jetski').whatsappUrl;
+  const cruiseWhatsapp = getQuickWhatsAppMessage('cruise').whatsappUrl;
+  const scubaWhatsapp = getQuickWhatsAppMessage('scuba').whatsappUrl;
+
+  return (
+    <>
+      <div className="home-container">
+        <Hero />
 
       {/* Jet Ski Section */}
       <section className="section-padding">
@@ -222,12 +263,12 @@ const Home = () => (
                 </div>
               </div>
 
-              <button className="cta-button">
+              <a href={jetskiWhatsapp} target="_blank" rel="noopener noreferrer" className="cta-button">
                 Book Now
                 <svg className="button-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </button>
+              </a>
             </div>
           </motion.div>
         </div>
@@ -281,7 +322,7 @@ const Home = () => (
                     "UNLIMITED BUFFET DINNER (VEG/NON-VEG)",
                     "2 COMPLEMENTARY DRINKS (ALCOHOLIC/NON ALCOHOLIC)",
                     "FUN GAMES & ENTERTAINMENT",
-                    "FLOATING CASINOS",
+                   
                     "ADIL SHAH PALACE",
                     "PANJIM CITY",
                     "REIS MAGOS FORT",
@@ -298,12 +339,12 @@ const Home = () => (
                 </div>
               </div>
 
-              <button className="cta-button">
+              <a href={cruiseWhatsapp} target="_blank" rel="noopener noreferrer" className="cta-button">
                 Book Now
                 <svg className="button-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </button>
+              </a>
             </div>
           </motion.div>
         </div>
@@ -370,12 +411,12 @@ const Home = () => (
                 </div>
               </div>
 
-              <button className="cta-button">
+              <a href={scubaWhatsapp} target="_blank" rel="noopener noreferrer" className="cta-button">
                 Book Now
                 <svg className="button-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </button>
+              </a>
             </div>
           </motion.div>
         </div>
@@ -410,7 +451,7 @@ const Home = () => (
                     <h3 className="activity-title">{card.title}</h3>
                     <p className="activity-description">{card.desc}</p>
                     <a
-                      href="https://wa.me/+918484810061"
+                      href={whatsappUrl}
                       className="activity-link"
                     >
                       Get Details
@@ -437,7 +478,7 @@ const Home = () => (
               Scuba Diving Videos
             </h2>
           </motion.div>
-          <div className="videos-grid">
+          {/* <div className="videos-grid">
             {videoList.map((video, idx) => (
               <motion.div
                 key={video.title}
@@ -457,7 +498,7 @@ const Home = () => (
                 ></iframe>
               </motion.div>
             ))}
-          </div>
+          </div> */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -466,7 +507,7 @@ const Home = () => (
             className="text-center mt-12"
           >
             <a
-              href="https://www.youtube.com/@divesport"
+              href="https://www.youtube.com/@GoaTravelMart"
               target="_blank"
               rel="noopener noreferrer"
               className="video-link-button"
@@ -514,11 +555,7 @@ const Home = () => (
                 className="why-choose-card"
               >
                 <div className="why-choose-image-container">
-                  <img
-                    src={card.img}
-                    alt={card.alt}
-                    className="why-choose-image"
-                  />
+                  {card.svg}
                   <div className="why-choose-overlay" />
                 </div>
                 <h3 className="why-choose-card-title">{card.title}</h3>
@@ -540,7 +577,7 @@ const Home = () => (
         className="text-center mt-12"
       >
         <a
-          href="https://wa.me/+918484810061"
+          href={whatsappUrl}
           className="cta-link-button"
         >
           Get Details & Discount Offers
@@ -567,12 +604,12 @@ const Home = () => (
               <div className="about-content">
                 <p>
                   Scuba diving experience in Goa should be on everyone's list of must-to-do activities in Goa. 
-                  Divesport is famous for providing a kind experience when it comes to water sports and scuba 
+                  Goa Travel Mart is famous for providing a kind experience when it comes to water sports and scuba 
                   diving in Goa With a depth ranging from 10-15 meters.
                 </p>
                 
                 <p>
-                  At Divesport we strive to provide the best 1st scuba experience in Goa. we have been here 
+                  At Goa Travel Mart we strive to provide the best 1st scuba experience in Goa. we have been here 
                   for 8+ years and serve thousands of travellers every season.
                 </p>
                 
@@ -596,7 +633,7 @@ const Home = () => (
               className="about-right"
             >
               <h3 className="experience-title">
-                Get the Best Experience in Scuba Diving & Watersports
+                Get the Best Experience in Scuba Diving & GoaTravelMart
               </h3>
               <p className="experience-subtitle">
                 Best Service, We Strive To Provide Our Customers.
@@ -636,23 +673,17 @@ const Home = () => (
       <section className="section-padding bg-white">
         <div className="container">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            {...motionCommon}
             transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
             className="contact-header"
           >
-            <div className="contact-icon-container">
-              <svg 
-                className="contact-icon" 
-                fill="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2ZM20 16H6L4 18V4H20V16Z"/>
+            <div className="contact-icon">
+              <svg fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20 2H4C2.9 2 2 2.9 2 4V22L6 18H20C21.1 18 22 17.1 22 16V4C22 2.9 21.1 2 20 2Z"/>
               </svg>
             </div>
             <h2 className="contact-title">Contact Us</h2>
-            <p className="contact-description">
+            <p className="contact-subtitle">
               We love to answer all your questions. Feel free to contact us.
             </p>
           </motion.div>
@@ -702,9 +733,15 @@ const Home = () => (
                 </svg>
               </div>
               <h3 className="contact-item-title">Live Chat</h3>
-              <button className="contact-link">
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-link"
+              >
                 Start Chat
-              </button>
+              </a>
+              
             </motion.div>
 
             {/* Email */}
@@ -725,12 +762,14 @@ const Home = () => (
                 </svg>
               </div>
               <h3 className="contact-item-title">Email</h3>
-              <a 
-                href="mailto:watersports@gmail.com" 
-                className="contact-link"
-              >
-                watersports@gmail.com
-              </a>
+              <a
+        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('goatravelm@gmail.com')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="contact-link"
+      >
+        goatravelm@gmail.com
+      </a>
             </motion.div>
           </div>
         </div>
@@ -821,14 +860,19 @@ const Home = () => (
               className="contact-info"
             >
               <div className="info-section">
-                <h2 className="info-title">Divesport.in</h2>
+                <h2 className="info-title">Goa Travel Mart</h2>
                 
                 <div className="info-content">
                   <div className="info-item">
                     <h3 className="info-subtitle">Email:</h3>
-                    <a href="mailto:watersports@gmail.com" className="info-link">
-                      watersports@gmail.com
-                    </a>
+                    <a
+        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('goatravelm@gmail.com')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="contact-link"
+      >
+        goatravelm@gmail.com
+      </a>
                   </div>
 
                   <div className="info-item">
@@ -897,7 +941,7 @@ const Home = () => (
               <a href="/contact" className="footer-link">Contact</a>
             </nav>
             <div className="footer-text">
-              Powered By Watersports...!
+              Powered By GoaTravelMart...!
             </div>
           </div>
         </div>
@@ -905,7 +949,7 @@ const Home = () => (
 
       {/* WhatsApp Float Button */}
       <a 
-        href="https://wa.me/+918484810061" 
+        href={whatsappUrl} 
         target="_blank" 
         rel="noopener noreferrer"
         className="whatsapp-float"
@@ -920,6 +964,7 @@ const Home = () => (
       </a>
     </div>
   </>
-);
+  );
+};
 
 export default Home;

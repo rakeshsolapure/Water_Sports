@@ -1,11 +1,17 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom'; // Add this import
+import { useState, useEffect } from 'react';
 import './Css/About.css';
+import { getWhatsAppMessage } from '../utils/whatsappMessage';
 
 const motionCommon = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
 };
+
+  const { whatsappUrl } = getWhatsAppMessage();
+
 
 const bookWithUsCards = [
   {
@@ -54,7 +60,14 @@ const contactDetails = [
       </svg>
     ),
     title: 'Live Chat',
-    content: <button className="contact-link">Start Chat</button>,
+    content:<a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="contact-link"
+              >
+                Start Chat
+              </a>,
   },
   {
     icon: (
@@ -63,12 +76,41 @@ const contactDetails = [
       </svg>
     ),
     title: 'Email',
-    content: <a href="mailto:watersports@gmail.com" className="contact-link">watersports@gmail.com</a>,
+    content: <a
+        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('goatravelm@gmail.com')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="contact-link"
+      >
+        goatravelm@gmail.com
+      </a>,
   },
 ];
 
-const About = () => (
-  <div className="about-container">
+const About = () => {
+  const { whatsappUrl } = getWhatsAppMessage();
+
+  const images = [
+    // 'src/assets/user_review/Scuba_Dive.jepg',
+    "src/assets/user_review/Scuba_Dive.jpg",
+    'src/assets/user_review/swastik_cruse.jpg',
+    'src/assets/user_review/IMG-20250109-WA0004.jpg',
+    'src/assets/user_review/IMG-20250109-WA0005.jpg',
+    'src/assets/user_review/IMG-20250109-WA0006.jpg',
+    'src/assets/user_review/IMG-20250109-WA0007.jpg',
+  ];
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [images.length]);
+  
+  return (
+    <div className="about-container">
     <div className="about-content">
       <div className="about-grid">
         <motion.div
@@ -77,11 +119,11 @@ const About = () => (
           transition={{ duration: 0.8 }}
         >
           <h1 className="about-title">
-            Welcome To Divesport Adventure! Your Ultimate Water Sports Destination In Goa.
+            Welcome To Goa Travel Mart Adventure! Your Ultimate Water Sports Destination In Goa.
           </h1>
           <div className="about-text-container">
             <p className="about-text">
-              Divesport was born in Goa – near Calangute Circle with one mission: to 
+              Goa Travel Mart was born in Goa – near Calangute Circle with one mission: to 
               "provide high-quality Scuba and Water sports experience for the 
               traveller seeking adventure and exclusivity".
             </p>
@@ -122,35 +164,16 @@ const About = () => (
           className="video-container"
         >
           <div className="video-wrapper">
-            <video
+            <img
+              src={images[currentImageIndex]}
+              alt="User Review Slideshow"
               className="video-element"
-              autoPlay
-              muted
-              loop
-              playsInline
-              poster="/images/about/video-poster.jpg"
-            >
-              <source src="/videos/watersports.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
-            <div className="video-overlay">
-              <button 
-                className="play-button"
-                onClick={e => {
-                  const video = e.currentTarget.parentElement.previousElementSibling;
-                  if (video.paused) video.play();
-                  else video.pause();
-                }}
-              >
-                <svg className="play-icon" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5v14l11-7z" />
-                </svg>
-              </button>
-            </div>
+              style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '0.75rem' }}
+            />
           </div>
         </motion.div>
       </div>
-      <motion.div
+      {/* <motion.div
         {...motionCommon}
         transition={{ duration: 0.8 }}
         className="mt-20"
@@ -159,7 +182,7 @@ const About = () => (
           We Offer Activities and Goa Tour
         </h2>
         {/* Add your activities grid or content here */}
-      </motion.div>
+      {/* </motion.div> */} 
     </div>
 
     {/* Popular Activities Section */}
@@ -187,15 +210,15 @@ const About = () => (
             </span>
             <img src="src/assets/scuba_pixel.jpg" alt="Scuba Diving Grand Island" className="card-image" />
             <div className="thumbnails-container">
-              <img src="src/assets/Scuba-Diving-at-Malvan-1.jpg" alt="" className="thumbnail"/>
-              <img src="src/assets/scuba_pixel.jpg" alt="" className="thumbnail"/>
+              <img src="src\assets\Scuba-Diving-at-Malvan-1.jpg" alt="" className="thumbnail"/>
+              <img src="src\assets\Professional.jpg" alt="" className="thumbnail"/>
               <img src="src/assets/Scuba_Dive.jpg" alt="" className="thumbnail"/>
             </div>
           </div>
           <div className="card-content">
             <div className="activity-type">Scuba Diving</div>
             <h3 className="activity-title">
-              Scuba Diving in Goa at Grand Island+ Watersports Combo
+              Scuba Diving in Goa at Grand Island+ GoaTravelMart Combo
             </h3>
             <p className="activity-description">
               Unleash your inner adventurer on a journey to Grand Island in Goa! Prepare for a ...
@@ -219,7 +242,7 @@ const About = () => (
             <span className="sale-badge">
               Sale!
             </span>
-            <img src="src/assets/Professional.jpg" alt="Water Sports Combo" className="card-image" />
+            <img src="src\assets\water-sports-activity-in-goa.webp" alt="Water Sports Combo" className="card-image" />
             <div className="thumbnails-container">
               <img src="src/assets/parasailing.jpg" alt="" className="thumbnail"/>
               <img src="src/assets/jet_Ski.jpg" alt="" className="thumbnail"/>
@@ -232,7 +255,7 @@ const About = () => (
               Water Sports in Goa Full Combo
             </h3>
             <p className="activity-description">
-              Experience the thrill of watersports amidst the stunning beaches of Goa with Divesport! Our range of ...
+              Experience the thrill of GoaTravelMart amidst the stunning beaches of Goa with Divesport! Our range of ...
             </p>
             <div className="price-container">
               <div className="current-price">₹1,800.00</div>
@@ -253,20 +276,20 @@ const About = () => (
             <span className="sale-badge">
               Sale!
             </span>
-            <img src="/images/activities/scuba-watersports.jpg" alt="Scuba and Watersports" className="card-image" />
+            <img src="src\assets\hotel_image\hotel.jpeg" className="card-image" />
             <div className="thumbnails-container">
-              <img src="/images/activities/combo-thumb-1.jpg" alt="" className="thumbnail"/>
-              <img src="/images/activities/combo-thumb-2.jpg" alt="" className="thumbnail"/>
-              <img src="/images/activities/combo-thumb-3.jpg" alt="" className="thumbnail"/>
+              <img src="src\assets\hotel_image\room1.jpg" alt="" className="thumbnail"/>
+              <img src="src\assets\hotel_image\room-1.jpg" alt="" className="thumbnail"/>
+              <img src="src\assets\hotel_image\swiming_pool.jpeg" alt="" className="thumbnail"/>
             </div>
           </div>
           <div className="card-content">
-            <div className="activity-type">Scuba Diving</div>
+            <div className="activity-type">Raj's Resort</div>
             <h3 className="activity-title">
-              Scuba Diving in Goa with Watersports Combo
+              🌴 Relaxing & Peaceful:
             </h3>
             <p className="activity-description">
-              Embark on an extraordinary underwater journey to explore the mesmerizing ...
+              Find your perfect getaway at Raj’s Resort — relax, rejuvenate, and rediscover tranquility.
             </p>
             <div className="price-container">
               <div className="current-price">₹2,500.00</div>
@@ -315,7 +338,7 @@ const About = () => (
           className="text-center mt-12"
         >
           <a
-            href="https://wa.me/919318383298"
+            href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="book-button"
@@ -371,13 +394,13 @@ const About = () => (
       <div className="footer-content">
         <div className="footer-nav">
           <nav className="footer-links">
-            <a href="/" className="footer-link">Home</a>
-            <a href="/about" className="footer-link">About</a>
-            <a href="/Gallery" className="footer-link">Gallery</a>
-            <a href="/Contact" className="footer-link">Contact</a>
+            <Link to="/" className="footer-link">Home</Link>
+            <Link to="/about" className="footer-link">About</Link>
+            <Link to="/Gallery" className="footer-link">Gallery</Link>
+            <Link to="/Contact" className="footer-link">Contact</Link>
           </nav>
           <div className="footer-text">
-            Powered By Watersports...!
+            Powered By GoaTravelMart...!
           </div>
         </div>
       </div>
@@ -385,7 +408,7 @@ const About = () => (
 
     {/* WhatsApp Float Button */}
     <a
-      href="https://wa.me/919318383298"
+       href="https://wa.me/919209768924"
       target="_blank"
       rel="noopener noreferrer"
       className="whatsapp-float"
@@ -395,6 +418,7 @@ const About = () => (
       </svg>
     </a>
   </div>
-);
+  );
+};
 
 export default About;

@@ -44,6 +44,8 @@ const Contact = () => {
   });
 
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState(null);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -55,18 +57,32 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitStatus(null);
+    setServerError(null);
+    setLoading(true);
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setSubmitStatus('success');
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: '',
+      const resp = await fetch('http://localhost:5000/api/send-sms', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
-    } catch (error) {
+
+      const data = await resp.json();
+      if (resp.ok && data.success) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      } else {
+        console.error('SMS API error', data);
+        setServerError(data.error || 'Server error');
+        setSubmitStatus('error');
+      }
+    } catch (err) {
+      console.error('Network error', err);
+      setServerError(err.message || 'Network error');
       setSubmitStatus('error');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -123,7 +139,7 @@ const Contact = () => {
                   </div>
                   <div className="info-content">
                     <h3>Location</h3>
-                    <p>123 Beach Road, Coastal City, CC 12345</p>
+                    <p>Opposite to panchayat lane, 2, 172/C, NAIKA VADDO, Calangute, Goa 403516</p>
                   </div>
                 </div>
                 <div className="info-item">
@@ -134,7 +150,7 @@ const Contact = () => {
                   </div>
                   <div className="info-content">
                     <h3>Phone</h3>
-                    <p>+1 (555) 123-4567</p>
+                    <p>+91 92097 68924</p>
                   </div>
                 </div>
                 <div className="info-item">
@@ -145,7 +161,14 @@ const Contact = () => {
                   </div>
                   <div className="info-content">
                     <h3>Email</h3>
-                    <p>info@watersports.com</p>
+                    <a
+        href={`https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent('goatravelm@gmail.com')}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="contact-link"
+      >
+        goatravelm@gmail.com
+      </a>
                   </div>
                 </div>
                 <div className="info-item">
@@ -164,7 +187,7 @@ const Contact = () => {
                 <iframe
                   title="Location Map"
                   className="map-iframe"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d33547.99199273577!2d77.62922805861825!3d13.121598623309339!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1a4d69f47915%3A0xb295fd0725bbbe97!2sHennur%20Bamboo%20Forest!5e0!3m2!1sen!2sin!4v1736178949303!5m2!1sen!2sin"
+                  src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3843.904240314512!2d73.76047897512493!3d15.543263385062604!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMTXCsDMyJzM1LjgiTiA3M8KwNDUnNDcuMCJF!5e0!3m2!1sen!2sin!4v1760863994603!5m2!1sen!2sin"
                   allowFullScreen
                 ></iframe>
               </div>
@@ -240,9 +263,12 @@ const Contact = () => {
                 <button
                   type="submit"
                   className="submit-btn"
+                  disabled={loading}
                 >
-                  Send Message
+                  {loading ? 'Sending...' : 'Send Message'}
                 </button>
+
+                {serverError && <p className="form-message error-message">{serverError}</p>}
                 {submitStatus === 'success' && (
                   <p className="form-message success-message">Message sent successfully!</p>
                 )}
@@ -291,7 +317,7 @@ const Contact = () => {
               ))}
             </nav>
             <div className="footer-text">
-              Powered By Watersports...!
+              Powered By GoaTravelMart...!
             </div>
           </div>
         </div>

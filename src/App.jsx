@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import Navbar from './components/common/Navbar';
+import './pages/Css/About.css';
 
 const Home = lazy(() => import('./pages/Home'));
 const HomeTest = lazy(() => import('./pages/HomeTest'));
@@ -17,7 +18,7 @@ const LoadingSpinner = () => (
 const Layout = ({ children }) => (
   <div className="flex flex-col min-h-screen">
     <Navbar />
-    <main className="flex-grow">{children}</main>
+    <main className="flex-grow pt-16">{children}</main>
   </div>
 );
 
